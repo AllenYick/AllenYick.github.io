@@ -54,16 +54,15 @@
   </header>
   <div class="entry-content">
     
-      <p>##Additive number</p>
-<blockquote>
+      <h2 id="Source">Source</h2><blockquote>
 <p>Additive number is a string whose digits can form additive sequence.</p>
 <p>A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.</p>
-<p><strong>For example:</strong><br>“112358” is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.</p>
-<p>1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8<br>“199100199” is also an additive number, the additive sequence is: 1, 99, 100, 199.<br>1 + 99 = 100, 99 + 100 = 199<br><strong>Note:</strong> Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.</p>
-<p>Given a string containing only digits ‘0’-‘9’, write a function to determine if it’s an additive number.</p>
+<p> <strong>For example:</strong><br>“112358” is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.</p>
+<p> 1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8<br>“199100199” is also an additive number, the additive sequence is: 1, 99, 100, 199.<br> 1 + 99 = 100, 99 + 100 = 199<br><strong>Note:</strong> Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.</p>
+<p> Given a string containing only digits ‘0’-‘9’, write a function to determine if it’s an additive number.</p>
+<p>More: <a href="https://leetcode.com/problems/additive-number/" target="_blank" rel="external">leetcode</a></p>
 </blockquote>
-<p>##My Solution</p>
-<p>将字符串分解，可构造一棵解答树，利用深度搜索寻找答案，注意处理以下几点。</p>
+<h2 id="My_Solution">My Solution</h2><p>将字符串分解，可构造一棵解答树，利用深度搜索寻找答案，注意处理以下几点。</p>
 <hr>
 <ul>
 <li>‘0x’是非法的；</li>
