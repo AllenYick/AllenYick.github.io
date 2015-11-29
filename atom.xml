@@ -4,7 +4,7 @@
   <subtitle><![CDATA[record the time | enjoy the life]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://whatsme.net/"/>
-  <updated>2015-11-29T06:50:06.685Z</updated>
+  <updated>2015-11-29T07:09:56.993Z</updated>
   <id>http://whatsme.net/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://whatsme.net/2015/11/29/Machine-Learning-%E6%A6%82%E8%A7%88/"/>
     <id>http://whatsme.net/2015/11/29/Machine-Learning-概览/</id>
     <published>2015-11-29T02:16:12.000Z</published>
-    <updated>2015-11-29T06:50:06.685Z</updated>
+    <updated>2015-11-29T07:09:56.993Z</updated>
     <content type="html"><![CDATA[<p>近些年来，得益于互联网的普及，我们可以非常轻松地获取大量文本、音乐、图片、视频等各种各样的数据。机器学习，就是让计算机具有像人一样的学习能力的技术，是从堆积如山的数据（大数据）中寻找有用知识的数据挖掘技术。通过运用机器学习技术，从视频数据库中寻找自己喜欢的视频资料，或者根据用户购买记录向用户推荐其他相关产品等成为了现实。接下来从宏观的角度对什么是机器学习做相应的介绍，并对机器学习的基本概念进行说明。<br><a id="more"></a></p>
 <h2 id="1-1_学习的种类">1.1 学习的种类</h2><p>计算机的学习，根据所处理的数据种类的不同，可以分为监督学习、无监督学习和强化学习等几种类型。</p>
 <p><strong>监督学习</strong>，通俗的讲是指由求知欲的学生从老师那里获取知识、信息，老师提供对错提示，告知最终答案的过程。在机器学习中，学生对应于计算机，老师对应于周围环境。根据在学习过程中所获得的经验、技能，对没有学习过的问题也可以做出正确的回答，是计算机获得这种泛化能力，是监督学习的最终目标。监督学习，在手写文字识别、声音处理、图像处理、垃圾邮件分类与拦截，网页检索、基因诊断以及股票预测等各个方面，都有着广泛的应用。这一类机器学习的典型任务包括：预测数值型数据的回归，预测分类标签的分类，预测顺序的排序等。</p>
@@ -30,7 +30,7 @@
 <p><strong>分类</strong>，是指对于指定的模式进行识别的有监督的模式识别问题。在这里，以$d$维实向量$\boldsymbol{x}$作为输入样本，而所有的输入样本，可以划分为$c$个类别的问题进行说明，作为训练集的输入输出样本<span>$\{({x_i}, y_i)\}_{i=1}^{n}$</span><!-- Has MathJax -->是已知的。但是，分类问题中的输出样本$y_i$，并不是具体的实数，而是分别代表类别$ 1,2, \ldots ,c $。在这样的任务里，得到输出类别$1,2, \ldots ,c$的函数$ y=f(\boldsymbol{x}) $的过程。</p>
 <p><strong>异常检测</strong>，是指寻找输入样本<span>$\{({x_i})\}_{i=1}^{n}$</span><!-- Has MathJax -->中所包含的异常数据的问题。在已知正常数据与异常数据例子的情况下，其与有监督的分类问题是相同的。但是，在一般情况下，对于什么样的数据是异常的，什么样的数据是正常的，在事先是未知的。在这样的无监督的异常检测问题中，一般采用密度估计的方法，把靠近密度中心的数据作为正常数据，把偏离密度中心的数据作为异常数据。</p>
 <p><strong>聚类</strong>，与分类问题相同，也是模式识别问题，但是属于无监督学习的一种。即只给出输入样本<span>$\{({x_i})\}_{i=1}^{n}$</span><!-- Has MathJax -->，然后判断各个样本分别属于$1,2, \ldots ,c$中的哪个簇。隶属于相同簇的样本之间具有相似性的性质，不同簇之间具有不同的性质。在聚类问题中，如何准确地计算样本之间的相似度是很重要的课题。</p>
-<p>参考文献：<br>[1] 图解机器学习<br>[2] <a href="http://pages.cs.wisc.edu/~jerryzhu/pub/sslicml07.pdf‎" target="_blank" rel="external">Semi-Supervised Learning Tutorial</a></p>
+<p>参考文献：<br>[1] 图解机器学习<br>[3] <a href="http://pages.cs.wisc.edu/~jerryzhu/pub/sslicml07.pdf‎" target="_blank" rel="external">Semi-Supervised Learning Tutorial</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>近些年来，得益于互联网的普及，我们可以非常轻松地获取大量文本、音乐、图片、视频等各种各样的数据。机器学习，就是让计算机具有像人一样的学习能力的技术，是从堆积如山的数据（大数据）中寻找有用知识的数据挖掘技术。通过运用机器学习技术，从视频数据库中寻找自己喜欢的视频资料，或者根据用户购买记录向用户推荐其他相关产品等成为了现实。接下来从宏观的角度对什么是机器学习做相应的介绍，并对机器学习的基本概念进行说明。<br>]]>
@@ -48,7 +48,7 @@
     <link href="http://whatsme.net/2015/11/28/Range-Sum-Query/"/>
     <id>http://whatsme.net/2015/11/28/Range-Sum-Query/</id>
     <published>2015-11-28T05:56:19.000Z</published>
-    <updated>2015-11-29T04:19:28.826Z</updated>
+    <updated>2015-11-29T07:10:11.832Z</updated>
     <content type="html"><![CDATA[<p>Range Sum Query, 对一个整数序列，给定范围对其求和。根据序列的维度可分为一维、二维和多维，根据元素是否可以改变分为Immutable和Mutable，我们只讨论一维和二维的情况。<br><a id="more"></a></p>
 <h2 id="1-_1D,_Immutable（一维，数据不可变）">1. 1D, Immutable（一维，数据不可变）</h2><blockquote>
 <p>Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.</p>
@@ -97,6 +97,8 @@
     
       <category term="algorithm" scheme="http://whatsme.net/tags/algorithm/"/>
     
+      <category term="leetcode" scheme="http://whatsme.net/tags/leetcode/"/>
+    
       <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
     
   </entry>
@@ -106,7 +108,7 @@
     <link href="http://whatsme.net/2015/11/27/Additive-number/"/>
     <id>http://whatsme.net/2015/11/27/Additive-number/</id>
     <published>2015-11-27T05:03:02.000Z</published>
-    <updated>2015-11-28T14:10:12.821Z</updated>
+    <updated>2015-11-29T07:09:35.152Z</updated>
     <content type="html"><![CDATA[<h2 id="Source">Source</h2><blockquote>
 <p>Additive number is a string whose digits can form additive sequence.</p>
 <p>A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.</p>
@@ -137,31 +139,11 @@
     
     </summary>
     
+      <category term="algorithm" scheme="http://whatsme.net/tags/algorithm/"/>
+    
       <category term="leetcode" scheme="http://whatsme.net/tags/leetcode/"/>
     
       <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://whatsme.net/2015/10/28/hello-world/"/>
-    <id>http://whatsme.net/2015/10/28/hello-world/</id>
-    <published>2015-10-28T13:58:11.636Z</published>
-    <updated>2015-10-27T05:27:49.854Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
-    </summary>
     
   </entry>
   
