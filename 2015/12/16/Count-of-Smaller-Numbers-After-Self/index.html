@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Count of Smaller Numbers After Self | AllenYick&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目描述在一个整数序列中，统计每个元素其右边的元素中比本身小的元素个数，并返回。题目来源leetcode。
+本题需要注意*点：元素均为整数，元素可能重复。
+例子:
+给定 nums = [5, 2, 6, 1]
+
+5右边有两个更小的数 (2 , 1).
+2右边有两个更小的数(1).
+6右边有两个更小的数(1).
+最右边的数没有比它小的数.
+
+返回序列 count = [2, 1, 1, 0]。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Count of Smaller Numbers After Self">
+<meta property="og:url" content="http://whatsme.net/2015/12/16/Count-of-Smaller-Numbers-After-Self/index.html">
+<meta property="og:site_name" content="AllenYick's blog">
+<meta property="og:description" content="题目描述在一个整数序列中，统计每个元素其右边的元素中比本身小的元素个数，并返回。题目来源leetcode。
+本题需要注意*点：元素均为整数，元素可能重复。
+例子:
+给定 nums = [5, 2, 6, 1]
+
+5右边有两个更小的数 (2 , 1).
+2右边有两个更小的数(1).
+6右边有两个更小的数(1).
+最右边的数没有比它小的数.
+
+返回序列 count = [2, 1, 1, 0]。">
+<meta property="og:image" content="http://whatsme.net/images/binary_search_tree_node_7.png">
+<meta property="og:image" content="http://whatsme.net/images/binary_search_tree_half.png">
+<meta property="og:image" content="http://whatsme.net/images/binary_search_tree.png">
+<meta property="og:updated_time" content="2015-12-16T13:41:47.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Count of Smaller Numbers After Self">
+<meta name="twitter:description" content="题目描述在一个整数序列中，统计每个元素其右边的元素中比本身小的元素个数，并返回。题目来源leetcode。
+本题需要注意*点：元素均为整数，元素可能重复。
+例子:
+给定 nums = [5, 2, 6, 1]
+
+5右边有两个更小的数 (2 , 1).
+2右边有两个更小的数(1).
+6右边有两个更小的数(1).
+最右边的数没有比它小的数.
+
+返回序列 count = [2, 1, 1, 0]。">
+  
+    <link rel="alternative" href="/atom.xml" title="AllenYick&#39;s blog" type="application/atom+xml">
+  
+  
+  <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+ 
+  <link href="//fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:700,400" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <div id="header-title">
+        <h1 id="logo-wrap">
+          <a href="/" id="logo">AllenYick&#39;s blog
+          
+              <span id="subtitle">record the time | enjoy the life</span>
+          
+          </a>
+        </h1>
+      </div>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://whatsme.net"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-Count-of-Smaller-Numbers-After-Self" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/12/16/Count-of-Smaller-Numbers-After-Self/" class="article-date">
+  <time datetime="2015-12-16T09:25:42.000Z" itemprop="datePublished">12月 16 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/tech/">tech</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Count of Smaller Numbers After Self
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述">题目描述</h2><p>在一个整数序列中，统计每个元素其右边的元素中比本身小的元素个数，并返回。题目来源<a href="https://leetcode.com/problems/count-of-smaller-numbers-after-self/" target="_blank" rel="external">leetcode</a>。</p>
+<p>本题需要注意*点：元素均为整数，元素可能重复。</p>
+<p><strong>例子:</strong></p>
+<p>给定 nums = [5, 2, 6, 1]</p>
+<ul>
+<li>5右边有两个更小的数 (2 , 1).</li>
+<li>2右边有两个更小的数(1).</li>
+<li>6右边有两个更小的数(1).</li>
+<li>最右边的数没有比它小的数.</li>
+</ul>
+<p>返回序列 count = [2, 1, 1, 0]。<br><a id="more"></a></p>
+<h2 id="思路">思路</h2><p>自右向左处理每一个数，我们知道对于每一个数，只要遍历它右边的每个数，再与本身做一个比较不就知道答案了吗？这样的算法不难想到，也容易实现，时间复杂度为O(n^2)。</p>
+<p>这样的处理方法，对每个数的处理跟以前的都没有关系，比如这样的一个例子：</p>
+<p>[7, 4, 5, 6, 2, 9, 8, 4, 7]</p>
+<p>在处理9的时候，其实比9小的数就是9后边一个8对应的count加上8的个数。如果有这些信息我们很快就能得到9对应的count值。</p>
+<p>在知道了处理的过程中是有信息可以利用的以后，在处理每个数的时候可以将复杂度降到O(logn)甚至O(k)，现在主要的任务是寻找一个适当的算法或数据结构。跟大小有关的数据结构我们知道有<strong>二叉搜索树</strong>，对每一个结点，左子树的值总是大于该结点的值，右子树的值总是小于该结点的值，左子树和右子树都是一棵二叉搜索树。</p>
+<p>这样在处理的时候，实际上是在维护一棵二叉搜索树，二叉树每个结点，的数据结构和示意图如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> BinarySearchTreeNode</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> val;      <span class="comment">// 数值</span></span><br><span class="line">    <span class="keyword">int</span> less;     <span class="comment">// 比val小的数个数</span></span><br><span class="line">    <span class="keyword">int</span> count;    <span class="comment">// 值为val的个数</span></span><br><span class="line">    BinarySearchTreeNode *left, *right;</span><br><span class="line">    BinarySearchTreeNode(<span class="keyword">int</span> value) : val(value), less(<span class="number">0</span>),count(<span class="number">1</span>),left(<span class="literal">NULL</span>), right(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/binary_search_tree_node_7.png" alt="node"></p>
+<p>对上边的例子：</p>
+<ol>
+<li><p>首先添加7作为根结点</p>
+</li>
+<li><p>对每一个数，ans初始化为0用来保存结果，从树根节点往下搜索，</p>
+<ul>
+<li>当该数小于结点对应的数时，往右子树向下递归搜索，该结点的less加1</li>
+<li>当该数大于结点对应的数时，往左子树向下递归搜索，ans加上该结点的count和less</li>
+<li>当该数等于结点对应的数时，该结点的count加1，ans加上该结点的count</li>
+<li>保存ans</li>
+</ul>
+</li>
+<li><p>返回ans每个数对应的ans</p>
+</li>
+</ol>
+<p>处理的过程伪代码如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// root为树的根结点</span><br><span class="line">// node为一个结点</span><br><span class="line">// ans表示最后的结果</span><br><span class="line"><span class="operator"><span class="keyword">insert</span>(root, node, ans)</span><br><span class="line">    <span class="keyword">If</span> node.<span class="keyword">value</span> &lt; root.<span class="keyword">value</span></span><br><span class="line">        root.<span class="keyword">less</span> = root.<span class="keyword">less</span>+<span class="number">1</span></span><br><span class="line">        <span class="keyword">If</span> root.<span class="keyword">right</span> <span class="keyword">is</span> <span class="literal">NULL</span></span><br><span class="line">            root.<span class="keyword">right</span> &lt;- node</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">insert</span>(root.<span class="keyword">right</span>, node, ans)</span><br><span class="line">    <span class="keyword">Else</span> <span class="keyword">If</span> node.<span class="keyword">value</span> &gt; root.<span class="keyword">value</span></span><br><span class="line">        ans =  ans + root.<span class="keyword">less</span> + root.<span class="keyword">count</span></span><br><span class="line">        <span class="keyword">If</span> root.<span class="keyword">left</span> <span class="keyword">is</span> <span class="literal">NULL</span></span><br><span class="line">            root.<span class="keyword">left</span> &lt;- node</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">insert</span>(root.<span class="keyword">left</span>, node, ans)</span><br><span class="line">    <span class="keyword">Else</span> node.<span class="keyword">value</span> == root.<span class="keyword">value</span></span><br><span class="line">        root.<span class="keyword">count</span> = root.<span class="keyword">count</span> + <span class="number">1</span></span><br><span class="line">        ans = ans + root.<span class="keyword">less</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="代码_Cpp">代码 Cpp</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">// bianry search tree</span><br><span class="line">struct BinarySearchTreeNode</span><br><span class="line">&#123;</span><br><span class="line">    int val;</span><br><span class="line">    int less;</span><br><span class="line">    int count;</span><br><span class="line">    BinarySearchTreeNode *left, *right;</span><br><span class="line">    BinarySearchTreeNode(int value) : val(value), less(0),count(1),left(NULL), right(NULL) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void insert(BinarySearchTreeNode *root, const int value, int &amp;numLessThan)</span><br><span class="line">&#123;</span><br><span class="line">    if(value &lt; root-&gt;val)  // right</span><br><span class="line">    &#123;</span><br><span class="line">        root-&gt;less++;</span><br><span class="line">        if(root-&gt;right == NULL)</span><br><span class="line">            root-&gt;right = new BinarySearchTreeNode(value);</span><br><span class="line">        else</span><br><span class="line">            insert(root-&gt;right, value, numLessThan);</span><br><span class="line">    &#125;</span><br><span class="line">    else if(value &gt; root-&gt;val)</span><br><span class="line">    &#123;</span><br><span class="line">        numLessThan += root-&gt;less + root-&gt;count;</span><br><span class="line">        if(!root-&gt;left)</span><br><span class="line">            root-&gt;left = new BinarySearchTreeNode(value);</span><br><span class="line">        else</span><br><span class="line">            insert(root-&gt;left, value, numLessThan);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        numLessThan += root-&gt;less;</span><br><span class="line">        root-&gt;count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; countSmaller(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">    vector&lt;int&gt; count(nums.size());</span><br><span class="line">    if(nums.size() == 0)</span><br><span class="line">        return count;</span><br><span class="line">    BinarySearchTreeNode root(nums[nums.size()-1]);</span><br><span class="line">    for(int i = nums.size() - 2; i &gt;= 0; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        int numLessThan = 0;</span><br><span class="line">        insert(&amp;root, nums[i], numLessThan);</span><br><span class="line">        count[i] = numLessThan;</span><br><span class="line">    &#125;</span><br><span class="line">    return count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// int arr[] = &#123;7, 4, 5, 6, 2, 9, 8, 4, 7&#125;</span><br><span class="line">// vector&lt;int&gt; nums(begin(arr), end(arr));</span><br><span class="line">// auto vec = countSmaller(nums);</span><br><span class="line">// for(auto x : vex)</span><br><span class="line">//    cout &lt;&lt; x &lt;&lt; " ";    </span><br><span class="line"></span><br><span class="line">//  input:  [7, 4, 5, 6, 2, 9, 8, 4, 7]</span><br><span class="line">//  output: [5, 1, 2, 2, 0, 3, 2, 0, 0]</span><br></pre></td></tr></table></figure>
+<h2 id="运算过程">运算过程</h2><p>下面是该例子的处理过程中的示意图：</p>
+<p><img src="/images/binary_search_tree_half.png" alt="[8,4,7]"></p>
+<p>最后该二叉搜索树如下：</p>
+<p><img src="/images/binary_search_tree.png" alt="final binary search tree of [7, 4, 5, 6, 2, 9, 8, 4, 7]"></p>
+<h2 id="总结">总结</h2><p>虽然该算法的平均复杂度还能达到O(logn)，但在最坏的情况下为O(n^2)。原因是二叉搜索树退化成了一个链表。比如一个非递减序列或一个非递增序列。</p>
+<p>该方法还有其他的解法，诸如像<a href="https://leetcode.com/discuss/73917/accepted-c-solution-using-segment-tree" target="_blank" rel="external">segment-tree</a>、<a href="https://leetcode.com/discuss/73512/c-short-solution-using-binary-indexed-tree-56-ms" target="_blank" rel="external">binary-indexed-tree</a>、<a href="https://leetcode.com/discuss/73326/divide-and-conquer-like-merge-sort-order-statistics-tree" target="_blank" rel="external">divide-and-conquer</a>等方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://whatsme.net/2015/12/16/Count-of-Smaller-Numbers-After-Self/" data-id="cii8qd6wd000keguahw2vcdnq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary-search-tree/">binary search tree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/03/Arithmetic-Puzzles/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Arithmetic Puzzles</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Count-of-Smaller-Numbers-After-Self" data-title="Count of Smaller Numbers After Self" data-url="http://whatsme.net/2015/12/16/Count-of-Smaller-Numbers-After-Self/"></div>
+    <!-- 多说评论框 end -->
+
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'allenyick'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+    
+  </section>
+</section>
+        
+          
+            <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/academic/">academic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tech/">tech</a><span class="category-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget recents">
+      <ul>
+        
+          <li>
+            <a href="/2015/12/16/Count-of-Smaller-Numbers-After-Self/">Count of Smaller Numbers After Self</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/03/Arithmetic-Puzzles/">Arithmetic Puzzles</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/30/auto-与-decltype/">auto 与 decltype</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/29/Machine-Learning-概览/">Machine Learning 概览</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/28/Range-Sum-Query/">Range Sum Query</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C-11/" style="font-size: 10px;">C++11</a> <a href="/tags/algorithm/" style="font-size: 20px;">algorithm</a> <a href="/tags/binary-search-tree/" style="font-size: 10px;">binary search tree</a> <a href="/tags/hihocoder/" style="font-size: 10px;">hihocoder</a> <a href="/tags/leetcode/" style="font-size: 15px;">leetcode</a> <a href="/tags/machine-learning/" style="font-size: 10px;">machine learning</a> <a href="/tags/segment-tree/" style="font-size: 10px;">segment tree</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+          
+        
+      </div>
+      <div id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a></br>
+      &copy; 2015 AllenYick<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
