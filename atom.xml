@@ -3,25 +3,115 @@
   <title><![CDATA[AllenYick's blog]]></title>
   <subtitle><![CDATA[record the time | enjoy the life]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://whatsme.net/"/>
-  <updated>2015-12-16T13:41:47.367Z</updated>
-  <id>http://whatsme.net/</id>
+  <link href="http://allenyick.com/"/>
+  <updated>2016-03-08T14:13:24.754Z</updated>
+  <id>http://allenyick.com/</id>
   
   <author>
     <name><![CDATA[AllenYick]]></name>
-    <email><![CDATA[yikedll@gmail.com]]></email>
+    <email><![CDATA[allenyick@gmail.com]]></email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[C++面向对象]]></title>
+    <link href="http://allenyick.com/2016/03/08/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://allenyick.com/2016/03/08/C-面向对象/</id>
+    <published>2016-03-08T12:36:07.000Z</published>
+    <updated>2016-03-08T14:13:24.754Z</updated>
+    <content type="html"><![CDATA[<h2 id="概述">概述</h2><p>面向对象编程基于三个基本概念：<strong>数据抽象</strong>、<strong>继承</strong>和<strong>动态绑定</strong>。在C++中，用类进行数据抽象，用类派生从一个类继承基类的成员。动态绑定使编译器能够在运行时决定是使用基类中定义的函数还是派生类中定义的函数。<br>继承和动态绑定在两个方面简化了程序：</p>
+<ol>
+<li>能够容易地定义与其他类相似但又不同的新类；</li>
+<li>能都更容易地忽略这些相似类型之间区别的程序。</li>
+</ol>
+<h2 id="继承">继承</h2><p>通过继承可以实现类型之间的建模，共享公共的东西，仅仅特化本质上不同的东西。<strong>派生类</strong>可以继承<strong>基类</strong>定义的成员，派生类可以无需改变而使用那些与派生类型具有特性不相关的操作，派生类可以重定义那些与派生类相关的成员函数，将函数特化，考虑派生类型的特性。派生类还可以定义更多的成员。<br><a id="more"></a></p>
+<h3 id="定义基类">定义基类</h3><p>// C++ primer中的例子<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Class Item_base &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Item_base(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp; book = <span class="string">""</span>, <span class="keyword">double</span> sales_price = <span class="number">0.0</span>) :</span><br><span class="line">        isbn(book), price(sales_price) &#123; &#125;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">book</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> isbn; &#125;</span><br><span class="line">    <span class="comment">// reutrn total sales price for a specified number of items</span></span><br><span class="line">    <span class="comment">// derived classes will override and apply different discount algorithm</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">net_price</span><span class="params">(<span class="built_in">std</span>::size_t n)</span> <span class="keyword">const</span></span><br><span class="line">        </span>&#123; <span class="keyword">return</span> n * price; &#125;</span><br><span class="line">    <span class="keyword">virtual</span> ~Item_base() &#123; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> isbn;  <span class="comment">// identifier for the iterm</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">double</span> price;      <span class="comment">// nomal, undiscounted price</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Item_base定义了两个成员函数，一个带有保留字virtual。目的是启用动态绑定。成员默认为非虚函数，引入了protected访问标号，具体在以下介绍。</p>
+<h3 id="访问控制">访问控制</h3><p>public与private具有普通含义，public: 可以被类的用户和类的成员访问也可以被类的派生类访问（除私有派生），private：可以被类的成员访问但不能被类的用户和派生类访问。引入protectd，是public与private的混合：</p>
+<ul>
+<li>像private一样，不能被类的用户访问；</li>
+<li>像public一样，可被类的派生类访问。<br>另外，派生类只能通过派生类对象访问其基类的protected成员，但不能访问其基类对象的protected成员。</li>
+</ul>
+<h3 id="定义派生类">定义派生类</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// discount kicks in when a specified number of copies of same book are sold</span></span><br><span class="line"><span class="comment">// the discount is expresses as a fraction used reduce the normal price</span></span><br><span class="line"><span class="keyword">class</span> Bulk_item : <span class="keyword">public</span> Item_base &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// redefines base version so as to implement bulk purchaes discount policy</span></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">net_price</span><span class="params">(<span class="built_in">std</span>::size_t)</span> <span class="keyword">const</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="keyword">size_t</span> min_qty;   <span class="comment">// minimum purchaes for discount to apply</span></span><br><span class="line">    <span class="keyword">double</span> discount;       <span class="comment">// fractional discount to apply</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">double</span> Bulk_item::net_price(<span class="built_in">std</span>::<span class="keyword">size_t</span> cnt) <span class="keyword">const</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(cnt &gt;= min_qty)</span><br><span class="line">        <span class="keyword">return</span> cnt * (<span class="number">1</span> - discount) * price;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">return</span> cnt * price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每个Bulk_item对象包含四个数据成员：从Item_base继承的两个isbn和price，自己定义的两个min_qty和discount。并重写了net_price()函数。</p>
+<h2 id="动态绑定">动态绑定</h2><p>C++函数调用默认不使用动态绑定，要触发动态绑定，必须满足两个条件：</p>
+<ol>
+<li>只有指定为虚函数的成员函数才能进行动态绑定；</li>
+<li>必须通过基类类型的引用或指针进行函数调用；</li>
+</ol>
+<blockquote>
+<p>基类类型引用和指针的关键点在于<strong>静态类型</strong>（在编译时可知的引用类型或指针类型）和<strong>动态类型</strong>（指针或引用所绑定的对象的类型，这是仅在运行时可知的）可能不同。</p>
+</blockquote>
+<p>通过基类引用或指针调用基类中定义的函数时，我们并不知道执行函数的对象的确切类型，执行函数的对象可能是基类类型的，也可能是派生类型的。如果调用非虚函数，则无论实际对象是什么类型，都执行基类类型定义的函数。因此在编译是就确定了非虚函数的调用。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="概述">概述</h2><p>面向对象编程基于三个基本概念：<strong>数据抽象</strong>、<strong>继承</strong>和<strong>动态绑定</strong>。在C++中，用类进行数据抽象，用类派生从一个类继承基类的成员。动态绑定使编译器能够在运行时决定是使用基类中定义的函数还是派生类中定义的函数。<br>继承和动态绑定在两个方面简化了程序：</p>
+<ol>
+<li>能够容易地定义与其他类相似但又不同的新类；</li>
+<li>能都更容易地忽略这些相似类型之间区别的程序。</li>
+</ol>
+<h2 id="继承">继承</h2><p>通过继承可以实现类型之间的建模，共享公共的东西，仅仅特化本质上不同的东西。<strong>派生类</strong>可以继承<strong>基类</strong>定义的成员，派生类可以无需改变而使用那些与派生类型具有特性不相关的操作，派生类可以重定义那些与派生类相关的成员函数，将函数特化，考虑派生类型的特性。派生类还可以定义更多的成员。<br>]]>
+    
+    </summary>
+    
+      <category term="C++" scheme="http://allenyick.com/tags/C/"/>
+    
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Trie树及应用]]></title>
+    <link href="http://allenyick.com/2016/01/13/Trie%E6%A0%91%E5%8F%8A%E5%BA%94%E7%94%A8/"/>
+    <id>http://allenyick.com/2016/01/13/Trie树及应用/</id>
+    <published>2016-01-13T09:47:06.000Z</published>
+    <updated>2016-01-13T09:47:06.824Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[最小二乘学习法]]></title>
+    <link href="http://allenyick.com/2015/12/18/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E5%AD%A6%E4%B9%A0%E6%B3%95/"/>
+    <id>http://allenyick.com/2015/12/18/最小二乘学习法/</id>
+    <published>2015-12-18T12:42:49.000Z</published>
+    <updated>2015-12-22T06:44:31.992Z</updated>
+    <content type="html"><![CDATA[<p>最小二乘学习法是回归中最为基础的方法。</p>
+<p>我们以$d$维实向量$\boldsymbol{x}$作为输入、以实数值$y$作为输出的函数$y=f(x)$的学习问题进行说明。这里的真实函数关系$f$是未知的，通过训练样本<span>$\{({x_i}, y_i)\}_{i=1}^{n}$</span><!-- Has MathJax -->对其进行学习，一般情况下，输出样本$y_i$的真实值$f(x_i)$中经常会观测到噪声。<br><a id="more"></a></p>
+<h2 id="最小二乘学习法推导">最小二乘学习法推导</h2><p>最小二乘学习法是对模型的输出$f_\theta(x_i)$和训练集输出<span>$\{ y_i\}_{i=1}^{n}$</span><!-- Has MathJax -->的平均误差</p>
+<center><br><span>$J_{LS}(\boldsymbol{\theta})=\frac{1}{2}\sum\limits_{i=1}^{n}(f_\theta(x_i)-y_i)^2 \qquad (1.1)$</span><!-- Has MathJax --><br></center><br>为最小时的参数$\theta$进行学习。<br><center><br><span>$\widehat{\boldsymbol{\theta}}_{LS}=\mathop{argmin}_{\theta}J_{LS}(\boldsymbol{\theta})$</span><!-- Has MathJax --><br></center><br><strong>“LS”</strong>是Least Square的首字母。式(1.1)中加上系数1/2，是为了约去对<span>$J_{LS}$</span><!-- Has MathJax -->微分时得到的2。平方误差<span>$(f_\theta(x_i)-y_i)^2$</span><!-- Has MathJax -->是残差<span>$f_\theta(x_i)-y_i$</span><!-- Has MathJax -->的<span>$l_2$</span><!-- Has MathJax -->范数。因此最小二乘法有时也称为<span>$l_2$</span><!-- Has MathJax -->损失最小法。<br><br>如果使用线性模型<br><center><br><span>$f_\theta(\boldsymbol{x})=\sum\limits_{j=1}^{b} \theta_i\phi_i(\boldsymbol{x})=\boldsymbol{\theta}^{T}\phi(\boldsymbol{x})$</span><!-- Has MathJax --><br></center><br>的话，训练样本的平方差$J_{LS}$就能够表示为下述形式<br><center><br><span>$J_{LS}(\boldsymbol{\theta})=\frac{1}{2}\lVert\Phi\boldsymbol{\theta}-\boldsymbol{y}\rVert^2$</span><!-- Has MathJax --><br></center><br>在这里，<span>$\boldsymbol{y}=(y_1, \ldots,y_n)^T$</span><!-- Has MathJax -->是训练输出的$n$维向量，$\Phi$是下式中定义的<span>$n{\times}b$</span><!-- Has MathJax -->阶矩阵，也称为设计矩阵。<br><center><br><span>$$\Phi=
+\begin{pmatrix}
+\phi_1(\boldsymbol{x}_1) &amp; \ldots &amp; \phi_b(\boldsymbol{x}_1)\\
+\vdots      &amp; \ddots &amp; \vdots \\
+\phi_1(\boldsymbol{x}_n) &amp; \ldots &amp; \phi_b(\boldsymbol{x}_n)\\
+\end{pmatrix}$$</span><!-- Has MathJax --><br></center><br>平方误差<span>$J_{LS}$</span><!-- Has MathJax -->关于参数向量<span>$\boldsymbol{\theta}$</span><!-- Has MathJax -->的导数为<br><center><br><span>$\nabla_{\theta}J_{LS}=(\frac{\partial J_{LS} }{\partial {\theta}_1}, \ldots, \frac{\partial J_{LS} }{\partial {\theta}_b} )^T=\Phi^T\Phi\boldsymbol{\theta}-\Phi^T\boldsymbol{y}$</span><!-- Has MathJax --><br></center><br>令上式为零，得到<br><center><br><span>$\Phi^T\Phi\boldsymbol{\theta}=\Phi^T{y}$</span><!-- Has MathJax --><br></center><br>解<span>$\widehat{\boldsymbol{\theta}}_{LS}$</span><!-- Has MathJax -->可以表示为<br><center><br><span>$\widehat{\boldsymbol{\theta}}_{LS}=\Phi^\dagger{y}$</span><!-- Has MathJax --><br></center><br><span>$\Phi^T\Phi$</span><!-- Has MathJax -->有逆矩阵的时候，广义逆矩阵<span>$\Phi^\dagger$</span><!-- Has MathJax -->可以用下式表示：<br><center><br><span>$\Phi^\dagger=(\Phi^T\Phi)^{-1}\Phi^T$</span><!-- Has MathJax --><br></center>
+
+<h2 id="最小二乘法的应用">最小二乘法的应用</h2>]]></content>
+    <summary type="html">
+    <![CDATA[机器学习入门]]>
+    
+    </summary>
+    
+      <category term="machine learning" scheme="http://allenyick.com/tags/machine-learning/"/>
+    
+      <category term="最小二乘法" scheme="http://allenyick.com/tags/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95/"/>
+    
+      <category term="academic" scheme="http://allenyick.com/categories/academic/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Count of Smaller Numbers After Self]]></title>
-    <link href="http://whatsme.net/2015/12/16/Count-of-Smaller-Numbers-After-Self/"/>
-    <id>http://whatsme.net/2015/12/16/Count-of-Smaller-Numbers-After-Self/</id>
+    <link href="http://allenyick.com/2015/12/16/Count-of-Smaller-Numbers-After-Self/"/>
+    <id>http://allenyick.com/2015/12/16/Count-of-Smaller-Numbers-After-Self/</id>
     <published>2015-12-16T09:25:42.000Z</published>
-    <updated>2015-12-16T13:41:47.367Z</updated>
+    <updated>2016-01-13T06:53:11.047Z</updated>
     <content type="html"><![CDATA[<h2 id="题目描述">题目描述</h2><p>在一个整数序列中，统计每个元素其右边的元素中比本身小的元素个数，并返回。题目来源<a href="https://leetcode.com/problems/count-of-smaller-numbers-after-self/" target="_blank" rel="external">leetcode</a>。</p>
-<p>本题需要注意*点：元素均为整数，元素可能重复。</p>
+<p>本题需要注意两点：元素均为整数，元素可能重复。</p>
 <p><strong>例子:</strong></p>
 <p>给定 nums = [5, 2, 6, 1]</p>
 <ul>
@@ -65,7 +155,7 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<h2 id="题目描述">题目描述</h2><p>在一个整数序列中，统计每个元素其右边的元素中比本身小的元素个数，并返回。题目来源<a href="https://leetcode.com/problems/count-of-smaller-numbers-after-self/">leetcode</a>。</p>
-<p>本题需要注意*点：元素均为整数，元素可能重复。</p>
+<p>本题需要注意两点：元素均为整数，元素可能重复。</p>
 <p><strong>例子:</strong></p>
 <p>给定 nums = [5, 2, 6, 1]</p>
 <ul>
@@ -78,20 +168,20 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://whatsme.net/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://allenyick.com/tags/algorithm/"/>
     
-      <category term="binary search tree" scheme="http://whatsme.net/tags/binary-search-tree/"/>
+      <category term="binary search tree" scheme="http://allenyick.com/tags/binary-search-tree/"/>
     
-      <category term="leetcode" scheme="http://whatsme.net/tags/leetcode/"/>
+      <category term="leetcode" scheme="http://allenyick.com/tags/leetcode/"/>
     
-      <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Arithmetic Puzzles]]></title>
-    <link href="http://whatsme.net/2015/12/03/Arithmetic-Puzzles/"/>
-    <id>http://whatsme.net/2015/12/03/Arithmetic-Puzzles/</id>
+    <link href="http://allenyick.com/2015/12/03/Arithmetic-Puzzles/"/>
+    <id>http://allenyick.com/2015/12/03/Arithmetic-Puzzles/</id>
     <published>2015-12-03T06:36:15.000Z</published>
     <updated>2015-12-15T02:24:26.926Z</updated>
     <content type="html"><![CDATA[<p><strong>Arithmetic Puzzles</strong>：给定一个由字母组成的等式，其中每一个字母表示一个数字。不同字母表示的数字一定不同。问字母和数字之间是否存在一一对应关系，使得等式成立。若存在多种方案输出按字母顺序排列后字典序最小的解。</p>
@@ -218,18 +308,37 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://whatsme.net/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://allenyick.com/tags/algorithm/"/>
     
-      <category term="hihocoder" scheme="http://whatsme.net/tags/hihocoder/"/>
+      <category term="hihocoder" scheme="http://allenyick.com/tags/hihocoder/"/>
     
-      <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[C++移动(move)语义]]></title>
+    <link href="http://allenyick.com/2015/12/02/C-%E7%A7%BB%E5%8A%A8-move-%E8%AF%AD%E4%B9%89/"/>
+    <id>http://allenyick.com/2015/12/02/C-移动-move-语义/</id>
+    <published>2015-12-02T01:26:02.000Z</published>
+    <updated>2016-01-13T06:53:50.703Z</updated>
+    <content type="html"><![CDATA[<p>移动（move）语义是 C++11 标准提出的新概念，</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>移动（move）语义是 C++11 标准提出的新概念，</p>
+]]>
+    </summary>
+    
+      <category term="C++11" scheme="http://allenyick.com/tags/C-11/"/>
+    
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[auto 与 decltype]]></title>
-    <link href="http://whatsme.net/2015/11/30/auto-%E4%B8%8E-decltype/"/>
-    <id>http://whatsme.net/2015/11/30/auto-与-decltype/</id>
+    <link href="http://allenyick.com/2015/11/30/auto-%E4%B8%8E-decltype/"/>
+    <id>http://allenyick.com/2015/11/30/auto-与-decltype/</id>
     <published>2015-11-30T13:56:26.000Z</published>
     <updated>2015-12-01T14:20:18.472Z</updated>
     <content type="html"><![CDATA[<p>本文将介绍C++11中两个与类型有关的关键字，<strong>auto</strong> 与 <strong>decltype</strong> ，以及C++11中新提出的<strong>类型推导</strong>的概念。</p>
@@ -288,16 +397,16 @@
     
     </summary>
     
-      <category term="C++11" scheme="http://whatsme.net/tags/C-11/"/>
+      <category term="C++11" scheme="http://allenyick.com/tags/C-11/"/>
     
-      <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Machine Learning 概览]]></title>
-    <link href="http://whatsme.net/2015/11/29/Machine-Learning-%E6%A6%82%E8%A7%88/"/>
-    <id>http://whatsme.net/2015/11/29/Machine-Learning-概览/</id>
+    <link href="http://allenyick.com/2015/11/29/Machine-Learning-%E6%A6%82%E8%A7%88/"/>
+    <id>http://allenyick.com/2015/11/29/Machine-Learning-概览/</id>
     <published>2015-11-29T02:16:12.000Z</published>
     <updated>2015-12-02T01:23:13.182Z</updated>
     <content type="html"><![CDATA[<p>近些年来，得益于互联网的普及，我们可以非常轻松地获取大量文本、音乐、图片、视频等各种各样的数据。机器学习，就是让计算机具有像人一样的学习能力的技术，是从堆积如山的数据（大数据）中寻找有用知识的数据挖掘技术。通过运用机器学习技术，从视频数据库中寻找自己喜欢的视频资料，或者根据用户购买记录向用户推荐其他相关产品等成为了现实。接下来从宏观的角度对什么是机器学习做相应的介绍，并对机器学习的基本概念进行说明。<br><a id="more"></a></p>
@@ -317,16 +426,16 @@
     
     </summary>
     
-      <category term="machine learning" scheme="http://whatsme.net/tags/machine-learning/"/>
+      <category term="machine learning" scheme="http://allenyick.com/tags/machine-learning/"/>
     
-      <category term="academic" scheme="http://whatsme.net/categories/academic/"/>
+      <category term="academic" scheme="http://allenyick.com/categories/academic/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Range Sum Query]]></title>
-    <link href="http://whatsme.net/2015/11/28/Range-Sum-Query/"/>
-    <id>http://whatsme.net/2015/11/28/Range-Sum-Query/</id>
+    <link href="http://allenyick.com/2015/11/28/Range-Sum-Query/"/>
+    <id>http://allenyick.com/2015/11/28/Range-Sum-Query/</id>
     <published>2015-11-28T05:56:19.000Z</published>
     <updated>2015-12-16T07:32:36.053Z</updated>
     <content type="html"><![CDATA[<p>Range Sum Query, 对一个整数序列，给定范围对其求和。根据序列的维度可分为一维、二维和多维，根据元素是否可以改变分为Immutable和Mutable，我们只讨论一维和二维的情况。<br><a id="more"></a></p>
@@ -375,20 +484,20 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://whatsme.net/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://allenyick.com/tags/algorithm/"/>
     
-      <category term="leetcode" scheme="http://whatsme.net/tags/leetcode/"/>
+      <category term="leetcode" scheme="http://allenyick.com/tags/leetcode/"/>
     
-      <category term="segment tree" scheme="http://whatsme.net/tags/segment-tree/"/>
+      <category term="segment tree" scheme="http://allenyick.com/tags/segment-tree/"/>
     
-      <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Additive Number]]></title>
-    <link href="http://whatsme.net/2015/11/27/Additive-number/"/>
-    <id>http://whatsme.net/2015/11/27/Additive-number/</id>
+    <link href="http://allenyick.com/2015/11/27/Additive-number/"/>
+    <id>http://allenyick.com/2015/11/27/Additive-number/</id>
     <published>2015-11-27T05:03:02.000Z</published>
     <updated>2015-11-29T07:09:35.152Z</updated>
     <content type="html"><![CDATA[<h2 id="Source">Source</h2><blockquote>
@@ -421,11 +530,11 @@
     
     </summary>
     
-      <category term="algorithm" scheme="http://whatsme.net/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://allenyick.com/tags/algorithm/"/>
     
-      <category term="leetcode" scheme="http://whatsme.net/tags/leetcode/"/>
+      <category term="leetcode" scheme="http://allenyick.com/tags/leetcode/"/>
     
-      <category term="tech" scheme="http://whatsme.net/categories/tech/"/>
+      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
     
   </entry>
   

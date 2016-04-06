@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>todo | AllenYick&#39;s blog</title>
+  <title>最小二乘学习法 | AllenYick&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录，美好生活的开始">
-<meta property="og:type" content="website">
-<meta property="og:title" content="todo">
-<meta property="og:url" content="http://allenyick.com/todo/index.html">
+  <meta name="description" content="机器学习入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小二乘学习法">
+<meta property="og:url" content="http://allenyick.com/2015/12/18/最小二乘学习法/index.html">
 <meta property="og:site_name" content="AllenYick's blog">
-<meta property="og:description" content="记录，美好生活的开始">
-<meta property="og:updated_time" content="2015-10-29T14:12:56.265Z">
+<meta property="og:description" content="机器学习入门">
+<meta property="og:updated_time" content="2015-12-22T06:44:31.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="todo">
-<meta name="twitter:description" content="记录，美好生活的开始">
+<meta name="twitter:title" content="最小二乘学习法">
+<meta name="twitter:description" content="机器学习入门">
   
     <link rel="alternative" href="/atom.xml" title="AllenYick&#39;s blog" type="application/atom+xml">
   
@@ -62,12 +62,16 @@
   </div>
 </div>
       <div class="outer">
-        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-最小二乘学习法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/todo/index.html" class="article-date">
-  <time datetime="2015-10-29T14:12:56.000Z" itemprop="datePublished">10月 29 2015</time>
+    <a href="/2015/12/18/最小二乘学习法/" class="article-date">
+  <time datetime="2015-12-18T12:42:49.000Z" itemprop="datePublished">12月 18 2015</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/academic/">academic</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -76,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      todo
+      最小二乘学习法
     </h1>
   
 
@@ -84,17 +88,48 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>最小二乘学习法是回归中最为基础的方法。</p>
+<p>我们以$d$维实向量$\boldsymbol{x}$作为输入、以实数值$y$作为输出的函数$y=f(x)$的学习问题进行说明。这里的真实函数关系$f$是未知的，通过训练样本<span>$\{({x_i}, y_i)\}_{i=1}^{n}$</span><!-- Has MathJax -->对其进行学习，一般情况下，输出样本$y_i$的真实值$f(x_i)$中经常会观测到噪声。<br><a id="more"></a></p>
+<h2 id="最小二乘学习法推导">最小二乘学习法推导</h2><p>最小二乘学习法是对模型的输出$f_\theta(x_i)$和训练集输出<span>$\{ y_i\}_{i=1}^{n}$</span><!-- Has MathJax -->的平均误差</p>
+<center><br><span>$J_{LS}(\boldsymbol{\theta})=\frac{1}{2}\sum\limits_{i=1}^{n}(f_\theta(x_i)-y_i)^2 \qquad (1.1)$</span><!-- Has MathJax --><br></center><br>为最小时的参数$\theta$进行学习。<br><center><br><span>$\widehat{\boldsymbol{\theta}}_{LS}=\mathop{argmin}_{\theta}J_{LS}(\boldsymbol{\theta})$</span><!-- Has MathJax --><br></center><br><strong>“LS”</strong>是Least Square的首字母。式(1.1)中加上系数1/2，是为了约去对<span>$J_{LS}$</span><!-- Has MathJax -->微分时得到的2。平方误差<span>$(f_\theta(x_i)-y_i)^2$</span><!-- Has MathJax -->是残差<span>$f_\theta(x_i)-y_i$</span><!-- Has MathJax -->的<span>$l_2$</span><!-- Has MathJax -->范数。因此最小二乘法有时也称为<span>$l_2$</span><!-- Has MathJax -->损失最小法。<br><br>如果使用线性模型<br><center><br><span>$f_\theta(\boldsymbol{x})=\sum\limits_{j=1}^{b} \theta_i\phi_i(\boldsymbol{x})=\boldsymbol{\theta}^{T}\phi(\boldsymbol{x})$</span><!-- Has MathJax --><br></center><br>的话，训练样本的平方差$J_{LS}$就能够表示为下述形式<br><center><br><span>$J_{LS}(\boldsymbol{\theta})=\frac{1}{2}\lVert\Phi\boldsymbol{\theta}-\boldsymbol{y}\rVert^2$</span><!-- Has MathJax --><br></center><br>在这里，<span>$\boldsymbol{y}=(y_1, \ldots,y_n)^T$</span><!-- Has MathJax -->是训练输出的$n$维向量，$\Phi$是下式中定义的<span>$n{\times}b$</span><!-- Has MathJax -->阶矩阵，也称为设计矩阵。<br><center><br><span>$$\Phi=
+\begin{pmatrix}
+\phi_1(\boldsymbol{x}_1) &amp; \ldots &amp; \phi_b(\boldsymbol{x}_1)\\
+\vdots      &amp; \ddots &amp; \vdots \\
+\phi_1(\boldsymbol{x}_n) &amp; \ldots &amp; \phi_b(\boldsymbol{x}_n)\\
+\end{pmatrix}$$</span><!-- Has MathJax --><br></center><br>平方误差<span>$J_{LS}$</span><!-- Has MathJax -->关于参数向量<span>$\boldsymbol{\theta}$</span><!-- Has MathJax -->的导数为<br><center><br><span>$\nabla_{\theta}J_{LS}=(\frac{\partial J_{LS} }{\partial {\theta}_1}, \ldots, \frac{\partial J_{LS} }{\partial {\theta}_b} )^T=\Phi^T\Phi\boldsymbol{\theta}-\Phi^T\boldsymbol{y}$</span><!-- Has MathJax --><br></center><br>令上式为零，得到<br><center><br><span>$\Phi^T\Phi\boldsymbol{\theta}=\Phi^T{y}$</span><!-- Has MathJax --><br></center><br>解<span>$\widehat{\boldsymbol{\theta}}_{LS}$</span><!-- Has MathJax -->可以表示为<br><center><br><span>$\widehat{\boldsymbol{\theta}}_{LS}=\Phi^\dagger{y}$</span><!-- Has MathJax --><br></center><br><span>$\Phi^T\Phi$</span><!-- Has MathJax -->有逆矩阵的时候，广义逆矩阵<span>$\Phi^\dagger$</span><!-- Has MathJax -->可以用下式表示：<br><center><br><span>$\Phi^\dagger=(\Phi^T\Phi)^{-1}\Phi^T$</span><!-- Has MathJax --><br></center>
+
+<h2 id="最小二乘法的应用">最小二乘法的应用</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://allenyick.com/todo/index.html" data-id="ciljem7h90000d4ua5oocn92v" class="article-share-link">Share</a>
+      <a data-url="http://allenyick.com/2015/12/18/最小二乘学习法/" data-id="ciljem7p00002d4uahxh2y79z" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/machine-learning/">machine learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最小二乘法/">最小二乘法</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2016/01/13/Trie树及应用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Trie树及应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/16/Count-of-Smaller-Numbers-After-Self/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Count of Smaller Numbers After Self</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -102,7 +137,7 @@
   <section id="comments">
 
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="page-undefined" data-title="todo" data-url="http://allenyick.com/todo/index.html"></div>
+    <div class="ds-thread" data-thread-key="post-最小二乘学习法" data-title="最小二乘学习法" data-url="http://allenyick.com/2015/12/18/最小二乘学习法/"></div>
     <!-- 多说评论框 end -->
 
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
@@ -217,5 +252,35 @@
 <script src="/js/script.js" type="text/javascript"></script>
 
   </div>
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 </body>
 </html>
