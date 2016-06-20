@@ -62,19 +62,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Trie树及应用]]></title>
-    <link href="http://allenyick.com/2016/01/13/Trie%E6%A0%91%E5%8F%8A%E5%BA%94%E7%94%A8/"/>
-    <id>http://allenyick.com/2016/01/13/Trie树及应用/</id>
-    <published>2016-01-13T09:47:06.000Z</published>
-    <updated>2016-01-13T09:47:06.824Z</updated>
-    <content type="html"></content>
-    <summary type="html">
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[最小二乘学习法]]></title>
     <link href="http://allenyick.com/2015/12/18/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E5%AD%A6%E4%B9%A0%E6%B3%95/"/>
     <id>http://allenyick.com/2015/12/18/最小二乘学习法/</id>
@@ -311,25 +298,6 @@
       <category term="algorithm" scheme="http://allenyick.com/tags/algorithm/"/>
     
       <category term="hihocoder" scheme="http://allenyick.com/tags/hihocoder/"/>
-    
-      <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[C++移动(move)语义]]></title>
-    <link href="http://allenyick.com/2015/12/02/C-%E7%A7%BB%E5%8A%A8-move-%E8%AF%AD%E4%B9%89/"/>
-    <id>http://allenyick.com/2015/12/02/C-移动-move-语义/</id>
-    <published>2015-12-02T01:26:02.000Z</published>
-    <updated>2016-01-13T06:53:50.703Z</updated>
-    <content type="html"><![CDATA[<p>移动（move）语义是 C++11 标准提出的新概念，</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>移动（move）语义是 C++11 标准提出的新概念，</p>
-]]>
-    </summary>
-    
-      <category term="C++11" scheme="http://allenyick.com/tags/C-11/"/>
     
       <category term="tech" scheme="http://allenyick.com/categories/tech/"/>
     
